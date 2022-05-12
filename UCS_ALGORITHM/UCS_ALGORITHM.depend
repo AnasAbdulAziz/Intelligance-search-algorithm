@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1652369861 source:c:\users\user\desktop\projects\ucs_algorithm\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<list>
+	<queue>
+	<algorithm>
+	<stdlib.h>
+
