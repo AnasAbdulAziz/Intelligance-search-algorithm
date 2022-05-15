@@ -1,0 +1,72 @@
+							BFS ALGORITHM
+#include <iostream>
+#include <queue>
+#include <vector>
+
+using namespace std;
+int initialstate,goalstate,numofedges,from,to,depth[10000];
+bool visited[10000];
+queue<int> openlist;
+vector<int> adj[10000],closedlist;
+
+void statespacegraph()
+{
+    cout<<"Enter number of edges";
+    cin>>numofedges;
+    cout<<"Enter the edges:"<<endl;
+    for (int i=0; i<numofedges;i++)
+    {
+        cin>>from>> to;
+        adj[from].push_back(to);
+    }
+}
+
+void BFS(int start)
+{
+    openlist.push(start);
+    depth[start]=0;
+    visited[start]=true;
+
+    while(!openlist.empty())
+    {
+    int cs=openlist.front();
+    openlist.pop();
+    closedlist.push_back(cs);
+
+    if(cs==goalstate){
+        return;
+    }
+    for (auto state:adj[cs])
+    {
+        if(visited[state])
+        {
+        continue;
+        }
+    openlist.push(state);
+    visited[state]=true;
+    depth[state]=depth[cs]+1;
+    }
+}
+return;
+}
+
+void display()
+{
+  cout<<"The Path is : ";
+  for(int i=0;i<closedlist.size();i++)
+  {
+      cout<<closedlist[i]<<"\t";
+  }
+  cout<<"The Level of Goal:"<<depth[goalstate]<<endl;
+}
+
+int main() {
+    statespacegraph();
+    cout<<"Enter InitialState:";;
+    cin>>initialstate;
+    cout<<"Enter Goal State:";
+    cin>>goalstate;
+    BFS(initialstate);
+    display();
+    return 0;
+}
